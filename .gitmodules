@@ -1,3 +1,6 @@
 [submodule ".config/nvim/pack/nvim/start/nvim-lspconfig"]
 	path = .config/nvim/pack/nvim/start/nvim-lspconfig
 	url = https://github.com/neovim/nvim-lspconfig
+[submodule ".config/tmux/plugins/tmux-sensible"]
+	path = .config/tmux/plugins/tmux-sensible
+	url = https://github.com/tmux-plugins/tmux-sensible
