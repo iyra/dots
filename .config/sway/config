@@ -18,7 +18,8 @@ set $term foot
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu wofi --show drun | xargs swaymsg exec --
+set $menu fuzzel
+set $btmenu bzmenu --launcher fuzzel
 
 ### Output configuration
 #
@@ -71,6 +72,7 @@ set $menu wofi --show drun | xargs swaymsg exec --
 
     # Start your launcher
     bindsym $mod+d exec $menu
+    bindsym $mod+n exec $btmenu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.

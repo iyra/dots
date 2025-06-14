@@ -6,7 +6,7 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
     "modules-center": ["sway/window"],
-    "modules-right": ["mpd", "pulseaudio", "network", "backlight","cpu","memory","battery", "battery#bat2", "clock", "tray"],
+    "modules-right": ["mpd", "pulseaudio", "network", "backlight","cpu","memory","battery", "battery#bat2", "temperature", "clock", "tray"],
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
@@ -48,8 +48,7 @@
         "spacing": 10
     },
     "clock": {
-        "format": "{:%H:%M }",
-        "format-alt": "{:%Y-%m-%d}"
+        "format": "{:%H:%M %Y-%m-%d}"
     },
     "cpu": {
         "format": "CPU {usage}% ",
