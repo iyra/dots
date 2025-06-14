@@ -23,9 +23,8 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 
 -- color theme
 require("config.lazy")
-vim.cmd 'set background=light'
-vim.g.tokyonight_style = "day"
-vim.cmd 'colorscheme tokyonight'
+vim.cmd 'set background=dark'
+vim.cmd 'colorscheme moonfly'
 
 -- optionally enable 24-bit colour
 vim.opt.termguicolors = true
@@ -33,10 +32,13 @@ vim.opt.termguicolors = true
 -- set line limit
 vim.opt.colorcolumn = "79"
 
+-- indent blank line
+require("ibl").setup()
+
 -- misc loads
 require('lualine').setup({
         options = {
-                theme = "tokyonight-day"
+                theme = "moonfly"
         },
 	sections = {
 	    lualine_a = {'mode'},
@@ -91,7 +93,8 @@ cmp.setup({
     { name = "crates" }
         }
 })
-require('lspconfig').emmet_language_server.setup({})
+
+vim.lsp.enable('pyright')
 
 -- LSP window borders
 local _border = "single"
