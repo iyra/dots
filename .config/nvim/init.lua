@@ -129,22 +129,36 @@ require('crates').setup({
         },
 })
 
+-- https://github.com/nvim-telescope/telescope.nvim/issues/592
+my_fd = function(opts)
+  opts = opts or {}
+  opts.cwd = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+  require'telescope.builtin'.find_files(opts)
+end
+
 -- keymap
 -- telescope general
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', ":Telescope find_files no_ignore=true hidden=true<CR>")
+vim.keymap.set('n', '<leader>fa', my_fd)
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>bf', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fb', ":Telescope file_browser no_ignore=true hidden=true path=%:p:h select_buffer=true<CR>")
-vim.keymap.set("n", "<leader>gr", "<cmd>Telescope lsp_references<CR>")
+vim.keymap.set("n", "<leader>gr", function()
+			require("telescope.builtin").lsp_references({ jump_type = "never" })
+		end)
 vim.keymap.set("n", "<leader>gde", vim.lsp.buf.declaration)
 vim.keymap.set("n", "<leader>gdf", "<cmd>Telescope lsp_definitions<CR>")
 vim.keymap.set("n", "<leader>gi", "<cmd>Telescope lsp_implementations<CR>")
 vim.keymap.set("n", "<leader>gt", "<cmd>Telescope lsp_type_definitions<CR>")
+vim.keymap.set("n", "<leader>gf", function()
+			require("telescope.builtin").lsp_definitions({ jump_type = "never" })
+		end)
 vim.keymap.set({ "n", "v" }, "<leader>gca", vim.lsp.buf.code_action)
 vim.keymap.set("n", "<leader>grn", vim.lsp.buf.rename)
-vim.keymap.set("n", "<leader>gea", "<cmd>Telescope diagnostics bufnr=0<CR>")
+vim.keymap.set("n", "<leader>geb", "<cmd>Telescope diagnostics bufnr=0<CR>")
+vim.keymap.set("n", "<leader>gea", "<cmd>Telescope diagnostics<CR>")
 vim.keymap.set("n", "<leader>gE", vim.diagnostic.open_float)
 vim.keymap.set("n", "<leader>gl", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "<leader>gh", vim.diagnostic.goto_next)
