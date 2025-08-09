@@ -20,6 +20,7 @@ set $term foot
 # on the original workspace that the command was run on.
 set $menu fuzzel
 set $btmenu bzmenu --launcher fuzzel
+set $lockimg ~/.local/bin/lockimg
 
 ### Output configuration
 #
@@ -37,11 +38,11 @@ set $btmenu bzmenu --launcher fuzzel
 #
 # Example configuration:
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
+exec swayidle -w \
+         timeout 300 '~/.local/bin/lockimg' \
+         timeout 900 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep '~/.local/bin/lockimg'
+
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
@@ -66,6 +67,8 @@ set $btmenu bzmenu --launcher fuzzel
 #
     # Start a terminal
     bindsym $mod+Return exec $term
+
+    bindsym $mod+Shift+z exec $lockimg
 
     # Kill focused window
     bindsym $mod+Shift+q kill
@@ -208,26 +211,8 @@ exec_always {
 	pkill kanshi
 	kanshi
 }
-    # screenshot selected area
 
-    bindsym $mod+x exec grim -g "$(slurp)" ~/scrot/$(date +'%Y-%m-%d-%H%M%S_grim.png')
-
-    # screenshot all outputs
-
-    bindsym Print exec grim ~/scrot/$(date +'%Y-%m-%d-%H%M%S_grim_desktop.png')
-
-    # screenshot focused output
-
-    bindsym ctrl+Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') ~/scrot/$(date +'%Y-%m-%d-%H%M%S_grim.png')
-    bindsym $mod+p exec ~/.local/bin/grimshot/grimshot copy area
-
-    # screenshot focused window
-
-    bindsym Mod1+Print exec ~/bin/windowscrot
-
-    # screenshot selected area after a few seconds
-
-    bindsym Shift+Print exec ~/bin/geoscrot
+bindsym $mod+p exec ~/.local/bin/grimshot/grimshot copy area
 bindsym $mod+greater move workspace to output right
 bindsym $mod+less move workspace to output left
 
