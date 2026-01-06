@@ -70,6 +70,12 @@ input {
     // focus-follows-mouse max-scroll-amount="0%"
 }
 
+environment {
+        XMODIFIERS "@im=fcitx"
+        GTK_IM_MODULE "fcitx"
+        QT_IM_MODULE "fcitx"
+}
+
 // You can configure outputs by their name, which you can find
 // by running `niri msg outputs` while inside a niri instance.
 // The built-in laptop monitor is usually called "eDP-1".
@@ -105,6 +111,7 @@ output "DP-6" {
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
     //position x=1280 y=0
+    mode "3840x2160@143.963"
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -269,7 +276,8 @@ layout {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "waybar"
+//spawn-at-startup "waybar"
+//spawn-at-startup "fcitx5 -d"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
