@@ -1,0 +1,11 @@
+[Unit]
+Description=awww wallpaper daemon
+After=niri.service
+Requires=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=awww-daemon
+
+[Install]
+WantedBy=niri.service

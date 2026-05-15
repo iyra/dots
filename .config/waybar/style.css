@@ -201,3 +201,41 @@ label:focus {
     margin: 6px 3px;
     min-width: 16px;
 }
+
+#custom-vpn.connected {
+  color: #8ec07c; /* green */
+}
+
+#custom-vpn.disconnected {
+  color: #fb4934; /* red */
+}
+
+#custom-vpn {
+  padding: 0 6px;
+}
+
+tooltip {
+  background-color: #111111;
+  color: #dddddd;
+  border-radius: 4px;
+  border: 1px solid #333333;
+  padding: 6px 8px;
+}
+
+/* Tooltip text */
+tooltip label {
+  color: #dddddd;
+}
+
+/* Links / emphasized text (month, weekdays) */
+tooltip * {
+  color: #dddddd;
+  text-shadow: none;
+}
+
+/* Hover / selected dates */
+tooltip label:selected,
+tooltip label:hover {
+  background-color: #222222;
+  color: #ffffff;
+}

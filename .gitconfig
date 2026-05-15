@@ -6,3 +6,5 @@
 [user]
 	email = iyra@nowhere
 	name = iyra
+[init]
+	defaultBranch = main

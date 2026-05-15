@@ -1,0 +1,12 @@
+[Unit]
+Description=Change wallpaper every 5 minutes
+After=niri.service awww-daemon.service
+Requires=graphical-session.target awww-daemon.service
+
+[Timer]
+OnActiveSec=10
+OnUnitActiveSec=5min
+Unit=wallpaper-random.service
+
+[Install]
+WantedBy=niri.service

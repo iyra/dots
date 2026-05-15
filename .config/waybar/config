@@ -4,11 +4,14 @@
     //"height": 5, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
+    "modules-left": ["cffi/niri-taskbar", "custom/media"],
     "modules-center": ["sway/window"],
-    "modules-right": ["mpd", "pulseaudio", "network", "backlight","cpu","memory","battery", "battery#bat2", "temperature", "clock", "tray"],
+    "modules-right": ["custom/vpn", "mpd", "pulseaudio", "network", "backlight","cpu","memory","battery", "battery#bat2", "temperature", "clock", "tray"],
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
+    },
+    "cffi/niri-taskbar": {
+            "module_path": "/usr/lib/waybar/libniri_taskbar.so"
     },
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩",
@@ -48,8 +51,29 @@
         "spacing": 10
     },
     "clock": {
-        "format": "{:%H:%M %Y-%m-%d}"
-    },
+            "format": "{:%d.%m.%Y %H:%M:%S}",
+            "format-alt": "{:%d.%m.%Y %H:%M:%S}",
+            "tooltip-format": "<span size='16000'>{calendar}</span>",
+            "interval": 5,
+            "calendar": {
+              "mode"          : "month",
+              "mode-mon-col"  : 3,
+              "weeks-pos"     : "",
+              "on-scroll"     : 1,
+              "format": {
+                "months":     "<span color='#ffead3'><b>{}</b></span>",
+                "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+              }
+            },
+            "actions":  {
+              "on-click-right": "mode",
+              "on-scroll-up": "shift_down",
+              "on-scroll-down": "shift_up"
+            }
+        },
     "cpu": {
         "format": "CPU {usage}% ",
         "tooltip": false
@@ -80,4 +104,12 @@
         "format-source-muted": "",
         "on-click": "pavucontrol"
     },
+  "custom/vpn": {
+    "exec": "~/.local/bin/vpn-status",
+    "interval": 10,
+    "return-type": "json",
+    "format": "{text}",
+    "tooltip": true
+  }
+}
 }
