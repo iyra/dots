@@ -1,0 +1,5 @@
+[Unit]
+Description=Lock screen for %i
+
+[Service]
+ExecStart=/usr/bin/swaylock -f --image ~/wallpapers/hills.jpg
