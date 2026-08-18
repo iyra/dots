@@ -8,3 +8,5 @@
 	name = iyra
 [init]
 	defaultBranch = main
+[core]
+	editor = hx
